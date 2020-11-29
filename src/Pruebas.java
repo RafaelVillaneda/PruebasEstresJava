@@ -42,19 +42,22 @@ class MetodosOrdenamientos{
 		int comparaciones = 0,intercambios = 0,recorridos=0;
 		tTnicio = System.nanoTime();
         for(int i=1; i<numeros.length; i++) {
-			
+        	recorridos++;
 			for(int j=0; j<numeros.length-i; j++) {
-				
+				recorridos++;
+				comparaciones++;
 				if(numeros[j]>numeros[j+1]) {
 					int aux = numeros[j];
+					intercambios++;
 					numeros[j] = numeros[j+1];
+					intercambios++;
 					numeros[j+1] = aux;
 				}
 			}
 		}
         tFin = System.nanoTime();
 		System.out.println("El tiempo de ejecucion en ordenamiento burbuja2 fue de "+(tFin-tTnicio));
-		System.out.println("Recorridos"+recorridos);
+		System.out.println("Recorridos: "+recorridos);
 		System.out.println("Intercambios: "+intercambios);
 		System.out.println("Comparaciones: "+comparaciones);
 	}
@@ -69,17 +72,20 @@ class MetodosOrdenamientos{
     		   
     		   for(int j=0; j<numeros.length-i; j++) {
 					if(numeros[j]>numeros[j+1]) {
-						recorridos++;
 						int aux = numeros[j];
+						intercambios++;
 						numeros[j] = numeros[j+1];
+						intercambios++;
 						numeros[j+1] = aux;
 					}
+					recorridos++;
 				}
     		   
     		   i=1+i;
+    		   recorridos++;
     	   }while(i<numeros.length);
     	    tFin = System.nanoTime();
-			System.out.println("Tiempo de ejecucion en ordenamiento por burbuja3: " + (tFin-tTnicio));
+			System.out.println("Tiempo de ejecucion en ordenamiento por burbuja 3: " + (tFin-tTnicio));
 			System.out.println("Recorridos"+recorridos);
 			System.out.println("Intercambios: "+intercambios);
 			System.out.println("Comparaciones: "+comparaciones);
@@ -100,7 +106,6 @@ class MetodosOrdenamientos{
 				numeros[j]=aux;
 			}//Segundo for
 		}//Primer for
-		System.out.println("El tiempo de ejecucion en ordenamiento burbuja1 fue de "+(tFin-tFin));
 		System.out.println("Recorridos"+recorridos);
 		System.out.println("Intercambios: "+intercambios);
 		System.out.println("Comparaciones: "+comparaciones);
@@ -240,15 +245,15 @@ class pruebasEstres{
 		}
 		//System.out.println("Acabo el 2");
 		for(int i=0;i<vector10000elementos.length;i++) {
-			vector10000elementos[i]=(int) (Math.random() * 1000 + 1);
+			vector10000elementos[i]=(int) (Math.random() * 10000 + 1);
 		}
 		//System.out.println("Acabo el 3");
 		for(int i=0;i<vector100000elementos.length;i++) {
-			vector100000elementos[i]=(int) (Math.random() * 1000 + 1);
+			vector100000elementos[i]=(int) (Math.random() * 10000 + 1);
 		}
 		//System.out.println("Acabo el 4");
 		for(int i=0;i<vector1000000elementos.length;i++) {
-			vector1000000elementos[i]=(int) (Math.random() * 1000 + 1);
+			vector1000000elementos[i]=(int) (Math.random() * 100000 + 1);
 		}
 		int numerosDesordenados[]= {55,15,78,99,16,1,112,23,1789};
 		int copi[];
@@ -302,16 +307,14 @@ class pruebasEstres{
 		orden.ordenarInserccion(copi);
 		tFin=System.nanoTime();
 		System.out.println("Tardo: "+(tFin-tTnicio));
-		orden.mostrarContador();
 		System.out.println("---------------------------- Seleccion -----------------------------------");
 		tTnicio=tFin=0;
 		copi=null;
 		copi=Arrays.copyOf(vector, vector.length-1);
 		tTnicio=System.nanoTime();
-		orden.ordenarInserccion(copi);
+		orden.ordenamientoSeleccion(copi);
 		tFin=System.nanoTime();
 		System.out.println("Tardo: "+(tFin-tTnicio));
-		orden.mostrarContador();
 		System.out.println("---------------------------- QUICKSORT -----------------------------------");
 		tTnicio=tFin=0;
 		copi=null;
@@ -326,7 +329,16 @@ class pruebasEstres{
 		copi=null;
 		copi=Arrays.copyOf(vector, vector.length-1);
 		tTnicio=System.nanoTime();
-		
+		orden.ordenamientoShellsort(copi);
+		tFin=System.nanoTime();
+		System.out.println("Tardo: "+(tFin-tTnicio));
+		orden.mostrarContador();
+		System.out.println("---------------------------- RADIX -----------------------------------");
+		tTnicio=tFin=0;
+		copi=null;
+		copi=Arrays.copyOf(vector, vector.length-1);
+		tTnicio=System.nanoTime();
+		orden.ordenamientoRadix(copi);
 		tFin=System.nanoTime();
 		System.out.println("Tardo: "+(tFin-tTnicio));
 		orden.mostrarContador();
