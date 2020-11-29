@@ -78,6 +78,28 @@ class MetodosOrdenamientos{
 			System.out.println("Intercambios: "+intercambios);
 			System.out.println("Comparaciones: "+comparaciones);
        }
+	public void ordenarInserccion(int [] numeros) {
+		long tTnicio,tFin = 0;
+		int aux;
+		int comparaciones = 0,intercambios = 0,recorridos=0;
+		for(int i=0;i<numeros.length;i++) {
+			recorridos++;
+			aux=numeros[i];
+			for(int j=i-1;j>=0 &&numeros[j]>aux;j--) {
+				comparaciones++;
+				recorridos++;
+				intercambios++;
+				numeros[j+1]=numeros[j];
+				numeros[j]=aux;
+			}//Segundo for
+		}//Primer for
+		System.out.println("El tiempo de ejecucion en ordenamiento burbuja1 fue de "+(tFin-tFin));
+		System.out.println("Recorridos"+recorridos);
+		System.out.println("Intercambios: "+intercambios);
+		System.out.println("Comparaciones: "+comparaciones);
+	}//Metodo de ordenamiento INseccion
+	
+	
 	
 }
 public class Pruebas {
