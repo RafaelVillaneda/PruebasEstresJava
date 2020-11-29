@@ -124,6 +124,41 @@ class MetodosOrdenamientos{
 		System.out.println("Comparaciones: "+comparaciones);
 	}
 	
+	public int [] ordenamientoQuicksort(int[] numeros,int izq,int der) {
+        int pivote = numeros[izq];
+        int i = izq, j = der;
+        int aux;
+        while(i<j) {
+        	contador[0]++;
+            while(numeros[i]<=pivote && i<j) {
+            	i++;
+            	contador[0]++;
+            }
+            while(numeros[j]>pivote) {
+            	j--;
+            	contador[0]++;
+            }
+            if(i<j) {
+            	contador[1]++;
+                aux = numeros[i];
+                numeros[i]=numeros[j];
+                numeros[j] = aux;
+            }
+        }
+        contador[1]++;
+        numeros[izq]=numeros[j];
+        numeros[j]=pivote;
+        contador[2]++;
+        if(izq<j-1)
+            ordenamientoQuicksort(numeros,izq,j-1);
+        contador[2]++;
+        if(j+1<der)
+        	ordenamientoQuicksort(numeros, j+1, der);
+        return numeros;
+}
+
+	
+
 }
 public class Pruebas {
 
