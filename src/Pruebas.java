@@ -8,6 +8,7 @@ class MetodosOrdenamientos{
 		contador[1]=0;
 		contador[2]=0;
 	}
+	
 	public void ordenacionBurbuja1(long numeros[]) {
 		long tTnicio;
 		long tFin;
@@ -31,6 +32,7 @@ class MetodosOrdenamientos{
 		System.out.println("Intercambios: "+intercambios);
 		System.out.println("Comparaciones: "+comparaciones);
 	}
+	
 	public  void ordenacionBurbuja2(long []numeros) {
 		long tTnicio;
 		long tFin;
@@ -53,6 +55,7 @@ class MetodosOrdenamientos{
 		System.out.println("Intercambios: "+intercambios);
 		System.out.println("Comparaciones: "+comparaciones);
 	}
+	
 	public  void ordenacionBurbuja3(long []numeros) {
 		long tTnicio;
 		long tFin;
@@ -78,6 +81,7 @@ class MetodosOrdenamientos{
 			System.out.println("Intercambios: "+intercambios);
 			System.out.println("Comparaciones: "+comparaciones);
        }
+	
 	public void ordenarInserccion(int [] numeros) {
 		long tTnicio,tFin = 0;
 		int aux;
@@ -99,7 +103,26 @@ class MetodosOrdenamientos{
 		System.out.println("Comparaciones: "+comparaciones);
 	}//Metodo de ordenamiento INseccion
 	
-	
+	public void ordenamientoSeleccion(int [] numeros) {
+		long comparaciones = 0,intercambios = 0,recorridos=0;
+		for (int i=0;i<numeros.length-1;i++) {
+			
+			for(int j=0;j<numeros.length;j++) {
+				comparaciones++;
+				if(numeros[i]>numeros[j]) {
+					int minimo=numeros[i];
+					numeros[i]=numeros[j];
+					numeros[j]=minimo;
+					intercambios++;
+				}
+				recorridos++;
+			}
+			recorridos++;
+		}
+		System.out.println("Recorridos"+recorridos);
+		System.out.println("Intercambios: "+intercambios);
+		System.out.println("Comparaciones: "+comparaciones);
+	}
 	
 }
 public class Pruebas {
