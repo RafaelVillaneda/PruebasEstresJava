@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Scanner;
+
 class MetodosOrdenamientos{
 	int [] contador=new int[3];
 	public void mostrarContador() {
@@ -9,7 +12,7 @@ class MetodosOrdenamientos{
 		contador[2]=0;
 	}
 	
-	public void ordenacionBurbuja1(long numeros[]) {
+	public void ordenacionBurbuja1(int numeros[]) {
 		long tTnicio;
 		long tFin;
 		int comparaciones = 0,intercambios = 0,recorridos=0;
@@ -19,7 +22,7 @@ class MetodosOrdenamientos{
 				recorridos++;
 				if(numeros[j]>numeros[j+1]) {
 					comparaciones++;
-					long aux=numeros[j];
+					int aux=numeros[j];
 					numeros[j]=numeros[j+1];
 					numeros[j+1]=aux;
 					intercambios++;
@@ -33,7 +36,7 @@ class MetodosOrdenamientos{
 		System.out.println("Comparaciones: "+comparaciones);
 	}
 	
-	public  void ordenacionBurbuja2(long []numeros) {
+	public  void ordenacionBurbuja2(int []numeros) {
 		long tTnicio;
 		long tFin;
 		int comparaciones = 0,intercambios = 0,recorridos=0;
@@ -43,7 +46,7 @@ class MetodosOrdenamientos{
 			for(int j=0; j<numeros.length-i; j++) {
 				
 				if(numeros[j]>numeros[j+1]) {
-					long aux = numeros[j];
+					int aux = numeros[j];
 					numeros[j] = numeros[j+1];
 					numeros[j+1] = aux;
 				}
@@ -56,7 +59,7 @@ class MetodosOrdenamientos{
 		System.out.println("Comparaciones: "+comparaciones);
 	}
 	
-	public  void ordenacionBurbuja3(long []numeros) {
+	public  void ordenacionBurbuja3(int []numeros) {
 		long tTnicio;
 		long tFin;
 		 int comparaciones = 0,intercambios = 0,recorridos=0;
@@ -67,7 +70,7 @@ class MetodosOrdenamientos{
     		   for(int j=0; j<numeros.length-i; j++) {
 					if(numeros[j]>numeros[j+1]) {
 						recorridos++;
-						long aux = numeros[j];
+						int aux = numeros[j];
 						numeros[j] = numeros[j+1];
 						numeros[j+1] = aux;
 					}
@@ -196,10 +199,137 @@ class MetodosOrdenamientos{
 	}//metodo
 
 }
+class pruebasEstres{
+	public void pruebaEstres(String op) {
+		int vector1000elementos[]=new int[1000];
+		int vector10000elementos[]=new int[10000];
+		int vector100000elementos[]=new int[100000];
+		int vector1000000elementos[]=new int[1000000];
+		//System.out.println("Acabo el 1");
+		for(int i=0;i<vector1000elementos.length;i++) {
+			vector1000elementos[i]=(int) (Math.random() * 1000 + 1);
+		}
+		//System.out.println("Acabo el 2");
+		for(int i=0;i<vector10000elementos.length;i++) {
+			vector10000elementos[i]=(int) (Math.random() * 1000 + 1);
+		}
+		//System.out.println("Acabo el 3");
+		for(int i=0;i<vector100000elementos.length;i++) {
+			vector100000elementos[i]=(int) (Math.random() * 1000 + 1);
+		}
+		//System.out.println("Acabo el 4");
+		for(int i=0;i<vector1000000elementos.length;i++) {
+			vector1000000elementos[i]=(int) (Math.random() * 1000 + 1);
+		}
+		int numerosDesordenados[]= {55,15,78,99,16,1,112,23,1789};
+		int copi[];
+		if(op.equalsIgnoreCase("1")) {
+			pruebaEstres(numerosDesordenados);
+		}else if (op.equalsIgnoreCase("2")) {
+			pruebaEstres(vector1000elementos);
+		}
+		else if (op.equalsIgnoreCase("3")) {
+			pruebaEstres(vector10000elementos);
+		}
+		else if (op.equalsIgnoreCase("4")) {
+			pruebaEstres(vector10000elementos);
+		}
+		else if (op.equalsIgnoreCase("5")) {
+			pruebaEstres(vector1000000elementos);
+		}
+	}
+	public void pruebaEstres(int vector[]) {
+		MetodosOrdenamientos orden=new MetodosOrdenamientos();
+		long tTnicio,tFin;
+		int copi[];
+		copi=null;
+		copi=Arrays.copyOf(vector, vector.length-1);
+		System.out.println("----------------------------Burbuja 1-----------------------------------");
+		tTnicio=System.nanoTime();
+		orden.ordenacionBurbuja1(copi);
+		tFin=System.nanoTime();
+		System.out.println("Tardo: "+(tFin-tTnicio));
+		orden.mostrarContador();
+		System.out.println("----------------------------Burbuja 2-----------------------------------");
+		tTnicio=tFin=0;
+		copi=null;
+		copi=Arrays.copyOf(vector, vector.length-1);
+		tTnicio=System.nanoTime();
+		orden.ordenacionBurbuja2(copi);
+		tFin=System.nanoTime();
+		System.out.println("Tardo: "+(tFin-tTnicio));
+		orden.mostrarContador();
+		System.out.println("----------------------------Burbuja 3-----------------------------------");
+		tTnicio=tFin=0;
+		copi=null;
+		copi=Arrays.copyOf(vector, vector.length-1);
+		tTnicio=System.nanoTime();
+		orden.ordenacionBurbuja3(copi);
+		tFin=System.nanoTime();
+		System.out.println("Tardo: "+(tFin-tTnicio));
+		orden.mostrarContador();
+		System.out.println("---------------------------- inserccion -----------------------------------");
+		tTnicio=tFin=0;
+		copi=null;
+		copi=Arrays.copyOf(vector, vector.length-1);
+		tTnicio=System.nanoTime();
+		orden.ordenarInserccion(copi);
+		tFin=System.nanoTime();
+		System.out.println("Tardo: "+(tFin-tTnicio));
+		orden.mostrarContador();
+		System.out.println("---------------------------- Seleccion -----------------------------------");
+		tTnicio=tFin=0;
+		copi=null;
+		copi=Arrays.copyOf(vector, vector.length-1);
+		tTnicio=System.nanoTime();
+		orden.ordenarInserccion(copi);
+		tFin=System.nanoTime();
+		System.out.println("Tardo: "+(tFin-tTnicio));
+		orden.mostrarContador();
+	}
+}
 public class Pruebas {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		Scanner entrada=new Scanner(System.in);
+		String op="";
+		boolean bandera=false;
+		pruebasEstres pruebas=new pruebasEstres();
+		while(bandera==false) {
+		long tTnicio,tFin;
+		System.out.println("Con que quieres probar?");
+		System.out.println("1-> Ordenar elementos precargados");
+		System.out.println("2-> Ordenar 1000 elementos");
+		System.out.println("3-> Ordenar 10000");
+		System.out.println("4-> Ordenar 100000");
+		System.out.println("5-> Ordenar 1000000");
+		System.out.println("6-> Salir");
+		op=entrada.nextLine();
+		switch (op) {
+		case "1":
+			pruebas.pruebaEstres(op);
+			break;
+		case "2":
+			pruebas.pruebaEstres(op);
+			break;
+		case "3":
+			pruebas.pruebaEstres(op);
+			break;
+		case "4":
+			pruebas.pruebaEstres(op);
+			break;
+		case "5":
+			pruebas.pruebaEstres(op);
+			break;
+		case "6":
+			System.out.println("Saliendo");
+			bandera=true;
+			break;
+		default:
+			break;
+		}
+		}
+		
 
 	}
 
