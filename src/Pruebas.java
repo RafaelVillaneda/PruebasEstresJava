@@ -198,6 +198,35 @@ class MetodosOrdenamientos{
 	       }//for
 	}//metodo
 
+	public void ordenamientoShellsort(int[] numeros) {
+		
+		int intervalo= numeros.length/2;
+		
+		while(intervalo>0) {
+			contador[2]++;
+			for(int i=intervalo;i<numeros.length;i++) {
+				int j= i-intervalo;
+				while(j>=0) {
+					int k=j+intervalo;
+					contador[2]++;
+					if(numeros[j]<=numeros[k]) {
+						j=-1;
+					}else {
+						int aux=numeros[j];
+						contador[1]++;
+						numeros[j]=numeros[k];
+						numeros[k]=aux;
+						j-=intervalo;
+					}
+					contador[0]++;
+				}
+				contador[0]++;
+			}
+			intervalo=intervalo/2;
+			contador[0]++;
+		}
+		
+	}//Metodo
 }
 class pruebasEstres{
 	public void pruebaEstres(String op) {
@@ -249,7 +278,6 @@ class pruebasEstres{
 		orden.ordenacionBurbuja1(copi);
 		tFin=System.nanoTime();
 		System.out.println("Tardo: "+(tFin-tTnicio));
-		orden.mostrarContador();
 		System.out.println("----------------------------Burbuja 2-----------------------------------");
 		tTnicio=tFin=0;
 		copi=null;
@@ -258,7 +286,6 @@ class pruebasEstres{
 		orden.ordenacionBurbuja2(copi);
 		tFin=System.nanoTime();
 		System.out.println("Tardo: "+(tFin-tTnicio));
-		orden.mostrarContador();
 		System.out.println("----------------------------Burbuja 3-----------------------------------");
 		tTnicio=tFin=0;
 		copi=null;
@@ -267,7 +294,6 @@ class pruebasEstres{
 		orden.ordenacionBurbuja3(copi);
 		tFin=System.nanoTime();
 		System.out.println("Tardo: "+(tFin-tTnicio));
-		orden.mostrarContador();
 		System.out.println("---------------------------- inserccion -----------------------------------");
 		tTnicio=tFin=0;
 		copi=null;
@@ -283,6 +309,24 @@ class pruebasEstres{
 		copi=Arrays.copyOf(vector, vector.length-1);
 		tTnicio=System.nanoTime();
 		orden.ordenarInserccion(copi);
+		tFin=System.nanoTime();
+		System.out.println("Tardo: "+(tFin-tTnicio));
+		orden.mostrarContador();
+		System.out.println("---------------------------- QUICKSORT -----------------------------------");
+		tTnicio=tFin=0;
+		copi=null;
+		copi=Arrays.copyOf(vector, vector.length-1);
+		tTnicio=System.nanoTime();
+		orden.ordenamientoQuicksort(copi, 0,copi.length-1);
+		tFin=System.nanoTime();
+		System.out.println("Tardo: "+(tFin-tTnicio));
+		orden.mostrarContador();
+		System.out.println("---------------------------- SHELLSORT -----------------------------------");
+		tTnicio=tFin=0;
+		copi=null;
+		copi=Arrays.copyOf(vector, vector.length-1);
+		tTnicio=System.nanoTime();
+		
 		tFin=System.nanoTime();
 		System.out.println("Tardo: "+(tFin-tTnicio));
 		orden.mostrarContador();
